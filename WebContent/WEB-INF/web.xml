@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
 	<display-name>dishup_restaurante</display-name>
+	
+	<!-- The jsp file that will be lauched when application starts -->
 	<welcome-file-list>
 	  <welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<!-- Spring framework servlet Dispatcher (Request Handler) -->
 	<servlet>
       <servlet-name>context</servlet-name>
       <servlet-class>
@@ -11,15 +15,23 @@
       </servlet-class>
       <init-param>
           <param-name>contextConfigLocation</param-name>
-          <param-value>
-              /WEB-INF/resource/context-spring.xml
-          </param-value>
+          <param-value>/WEB-INF/resource/context-spring.xml</param-value>
       </init-param>
       <load-on-startup>1</load-on-startup>
-  </servlet>
+  	</servlet>
 
-  <servlet-mapping>
-      <servlet-name>context</servlet-name>
+	<!-- Spring framework servlet mapping request (uri to controllers) -->
+  	<servlet-mapping>
+  	  <servlet-name>context</servlet-name>
       <url-pattern>/</url-pattern>
-</servlet-mapping>	
+	</servlet-mapping>
+	
+	<!-- Application Session Configuration -->
+	<session-config>
+  		<!-- Session timeout configuration (inactivity user time in minutes ) -->
+  		<session-timeout>3</session-timeout>
+  		<!-- Disables URL-based sessions (no more 'jsessionid' in the URL using Tomcat) -->
+  		<tracking-mode>COOKIE</tracking-mode>
+  	</session-config>	
+  	
 </web-app>
